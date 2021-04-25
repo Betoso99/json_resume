@@ -3,6 +3,7 @@ GET http://localhost:3000/resume/
 ###
 POST http://localhost:3000/resume/1
 Content-Type: application/json
+Authorization: Basic admin 1234
 
 {
   "basics": {

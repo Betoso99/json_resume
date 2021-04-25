@@ -461,7 +461,7 @@ app.get("/resume/:name/references", async (req, res) => {
 
 //#region POST
 
-app.post("/resume/:version", (req, res) => {
+app.post("/resume/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   res.set("etag", `${version}`);
   if (res.get("etag") === `${req.params.version}`) {
     resumes.push(req.body);
@@ -476,7 +476,7 @@ app.post("/resume/:version", (req, res) => {
 
 //#region PUT
 
-app.put("/resume/:name/:version", (req, res) => {
+app.put("/resume/:name/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -498,7 +498,7 @@ app.put("/resume/:name/:version", (req, res) => {
 
 //#region PATCH
 
-app.patch("/resume/:name/basics/:version", (req, res) => {
+app.patch("/resume/:name/basics/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -520,7 +520,7 @@ app.patch("/resume/:name/basics/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/basics/location/:version", (req, res) => {
+app.patch("/resume/:name/basics/location/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -542,7 +542,7 @@ app.patch("/resume/:name/basics/location/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/work/:version", (req, res) => {
+app.patch("/resume/:name/work/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -564,7 +564,7 @@ app.patch("/resume/:name/work/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/volunteer/:version", (req, res) => {
+app.patch("/resume/:name/volunteer/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -586,7 +586,7 @@ app.patch("/resume/:name/volunteer/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/education/:version", (req, res) => {
+app.patch("/resume/:name/education/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -608,7 +608,7 @@ app.patch("/resume/:name/education/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/awards/:version", (req, res) => {
+app.patch("/resume/:name/awards/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -630,7 +630,7 @@ app.patch("/resume/:name/awards/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/publications/:version", (req, res) => {
+app.patch("/resume/:name/publications/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -652,7 +652,7 @@ app.patch("/resume/:name/publications/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/skills/:version", (req, res) => {
+app.patch("/resume/:name/skills/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -674,7 +674,7 @@ app.patch("/resume/:name/skills/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/languages/:version", (req, res) => {
+app.patch("/resume/:name/languages/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -696,7 +696,7 @@ app.patch("/resume/:name/languages/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/interests/:version", (req, res) => {
+app.patch("/resume/:name/interests/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -718,7 +718,7 @@ app.patch("/resume/:name/interests/:version", (req, res) => {
   }
 });
 
-app.patch("/resume/:name/references/:version", (req, res) => {
+app.patch("/resume/:name/references/:version", basicAuth({users: {'admin' : '1234'}}), (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
@@ -744,7 +744,7 @@ app.patch("/resume/:name/references/:version", (req, res) => {
 
 //#region DELETE
 
-app.delete("/resume/:name/:version", async (req, res) => {
+app.delete("/resume/:name/:version", basicAuth({users: {'admin' : '1234'}}), async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
   const index = resumes.indexOf(item);
 
