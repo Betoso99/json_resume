@@ -1,4 +1,4 @@
-GET http://localhost:3000/resume/
+GET http://localhost:3000/resume/Alberto/profiles
 
 ###
 POST http://localhost:3000/resume/1
@@ -102,6 +102,7 @@ Authorization: Basic admin 1234
 ###
 PUT http://localhost:3000/resume/Alberto/2
 Content-Type: application/json
+Authorization: Basic admin 1234
 
 {
   "basics": {
@@ -200,6 +201,7 @@ Content-Type: application/json
 ###
 PATCH  http://localhost:3000/resume/Rodrigro/basics/3
 Content-Type: application/json
+Authorization: Basic admin 1234
 
 {
   "name": "Rodrigo"
@@ -207,3 +209,4 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:3000/resume/Alberto/1
+Authorization: Basic admin 1234
