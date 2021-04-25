@@ -197,7 +197,12 @@ Content-Type: application/json
 }
 
 ###
-PATCH  http://localhost:3000/resume
+PATCH  http://localhost:3000/resume/Rodrigro/basics/3
+Content-Type: application/json
+
+{
+  "name": "Rodrigo"
+}
 
 ###
 DELETE  http://localhost:3000/resume/Alberto/1

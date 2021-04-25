@@ -220,309 +220,547 @@ var resumes = [
 
 //#region GET
 
-app.get(("/resume"), async (req, res) => {
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(resumes))
-        console.log('Saving data...')
-        res.status(200).send(resumes);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume", async (req, res) => {
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(resumes))
+  console.log("Saving data...");
+  res.status(200).send(resumes);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item))
-        console.log('Saving data...')
-        res.status(200).send(item);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item))
+  console.log("Saving data...");
+  res.status(200).send(item);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/profiles"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.basics.profiles))
-        console.log('Saving data...')
-        res.status(200).send(item.basics.profiles);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/profiles", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.basics.profiles))
+  console.log("Saving data...");
+  res.status(200).send(item.basics.profiles);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/work"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work))
-        console.log('Saving data...')
-        res.status(200).send(item.work);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/work", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work))
+  console.log("Saving data...");
+  res.status(200).send(item.work);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/work/highlights"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work.highlights))
-        console.log('Saving data...')
-        res.status(200).send(item.work.highlights);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/work/highlights", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work.highlights))
+  console.log("Saving data...");
+  res.status(200).send(item.work.highlights);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/volunteer"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer))
-        console.log('Saving data...')
-        res.status(200).send(item.volunteer);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/volunteer", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer))
+  console.log("Saving data...");
+  res.status(200).send(item.volunteer);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/volunteer/highlights"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer.highlights))
-        console.log('Saving data...')
-        res.status(200).send(item.volunteer.highlights);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/volunteer/highlights", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer.highlights))
+  console.log("Saving data...");
+  res.status(200).send(item.volunteer.highlights);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/education"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education))
-        console.log('Saving data...')
-        res.status(200).send(item.education);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/education", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education))
+  console.log("Saving data...");
+  res.status(200).send(item.education);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/education/courses"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education.courses))
-        console.log('Saving data...')
-        res.status(200).send(item.education.courses);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/education/courses", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education.courses))
+  console.log("Saving data...");
+  res.status(200).send(item.education.courses);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/awards"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.awards))
-        console.log('Saving data...')
-        res.status(200).send(item.awards);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/awards", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.awards))
+  console.log("Saving data...");
+  res.status(200).send(item.awards);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/publications"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.publications))
-        console.log('Saving data...')
-        res.status(200).send(item.publications);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/publications", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.publications))
+  console.log("Saving data...");
+  res.status(200).send(item.publications);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/skills"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills))
-        console.log('Saving data...')
-        res.status(200).send(item.skills);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/skills", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills))
+  console.log("Saving data...");
+  res.status(200).send(item.skills);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/skills/keywords"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills.keywords))
-        console.log('Saving data...')
-        res.status(200).send(item.skills.keywords);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/skills/keywords", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills.keywords))
+  console.log("Saving data...");
+  res.status(200).send(item.skills.keywords);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/languages"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.languages))
-        console.log('Saving data...')
-        res.status(200).send(item.languages);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/languages", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.languages))
+  console.log("Saving data...");
+  res.status(200).send(item.languages);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/interests"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests))
-        console.log('Saving data...')
-        res.status(200).send(item.interests);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/interests", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests))
+  console.log("Saving data...");
+  res.status(200).send(item.interests);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/interests/keywords"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests.keywords))
-        console.log('Saving data...')
-        res.status(200).send(item.interests.keywords);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/interests/keywords", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests.keywords))
+  console.log("Saving data...");
+  res.status(200).send(item.interests.keywords);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
-app.get(("/resume/:name/references"), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    res.set('etag', `${version}`)
-    //const cache = await get_async(`Version ${version}`)
-    //if(!cache){
-        //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.references))
-        console.log('Saving data...')
-        res.status(200).send(item.references);
-    // }
-    // else{
-    //     res.status(200).send(JSON.parse(cache))
-    // }
+app.get("/resume/:name/references", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  res.set("etag", `${version}`);
+  //const cache = await get_async(`Version ${version}`)
+  //if(!cache){
+  //const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.references))
+  console.log("Saving data...");
+  res.status(200).send(item.references);
+  // }
+  // else{
+  //     res.status(200).send(JSON.parse(cache))
+  // }
 });
 
 //#endregion
 
 //#region POST
 
-app.post(("/resume/:version"), (req, res) => {
-    res.set('etag', `${version}`)
-    if(res.get('etag') === `${req.params.version}`){
-        resumes.push(req.body)
-        version++
-        res.status(200).send('Success!')
-    }
-    else{
-        res.status(409).send('This is not the last version')
-    }
-})
+app.post("/resume/:version", (req, res) => {
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    resumes.push(req.body);
+    version++;
+    res.status(200).send("Success!");
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
 
 //#endregion
 
 //#region PUT
 
-app.put(("/resume/:name/:version"), (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    const index = resumes.indexOf(item)
+app.put("/resume/:name/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
 
-    res.set('etag', `${version}`)
-    if(res.get('etag') === `${req.params.version}`){
-        if(item){
-            resumes[index] = req.body
-            version++
-            res.status(200).send('Success!')
-        }
-        else{
-            res.status(404).send('This item could not been found')
-        }
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      resumes[index] = req.body;
+      version++;
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
     }
-    else{
-        res.status(409).send('This is not the last version')
-    }
-})
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
 
 //#endregion
 
 //#region PATCH
+
+app.patch("/resume/:name/basics/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.basics[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/basics/location/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.basics.location[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/work/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.work[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/volunteer/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.volunteer[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/education/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.education[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/awards/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.basics[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/publications/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.publications[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/skills/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.skills[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/languages/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.languages[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/interests/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.interests[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
+app.patch("/resume/:name/references/:version", (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
+
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      const BodyKey = Object.keys(req.body)[0];
+      const newValue = Object.values(req.body)[0];
+
+      item.references[BodyKey] = newValue
+      resumes[index] = item
+      version++
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
+    }
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
+
 //#endregion
 
 //#region DELETE
 
-app.delete(('/resume/:name/:version'), async (req, res) => {
-    const item = resumes.find(c => c.basics.name === req.params.name)
-    const index = resumes.indexOf(item)
+app.delete("/resume/:name/:version", async (req, res) => {
+  const item = resumes.find((c) => c.basics.name === req.params.name);
+  const index = resumes.indexOf(item);
 
-    res.set('etag', `${version}`)
-    if(res.get('etag') === `${req.params.version}`){
-        if(item){
-            resumes.splice(index, 1)
-            //await del_async(`Version ${version}`)
-            res.status(200).send('Success!')
-        }
-        else{
-            res.status(404).send('This item could not been found')
-        }
+  res.set("etag", `${version}`);
+  if (res.get("etag") === `${req.params.version}`) {
+    if (item) {
+      resumes.splice(index, 1);
+      //await del_async(`Version ${version}`)
+      res.status(200).send("Success!");
+    } else {
+      res.status(404).send("This item could not been found");
     }
-    else{
-        res.status(409).send('This is not the last version')
-    }
-})
+  } else {
+    res.status(409).send("This is not the last version");
+  }
+});
 
 //#endregion
 
