@@ -1,0 +1,13 @@
+GET http://localhost:3000/resume/Alberto
+
+###
+POST http://localhost:3000/resume
+
+###
+PUT http://localhost:3000/resume
+
+###
+PATCH  http://localhost:3000/resume
+
+###
+DELETE  http://localhost:3000/resume
