@@ -503,6 +503,27 @@ app.put(("/resume/:name/:version"), (req, res) => {
 //#endregion
 
 //#region DELETE
+
+app.delete(('/resume/:name/:version'), async (req, res) => {
+    const item = resumes.find(c => c.basics.name === req.params.name)
+    const index = resumes.indexOf(item)
+
+    res.set('etag', `${version}`)
+    if(res.get('etag') === `${req.params.version}`){
+        if(item){
+            resumes.splice(index, 1)
+            //await del_async(`Version ${version}`)
+            res.status(200).send('Success!')
+        }
+        else{
+            res.status(404).send('This item could not been found')
+        }
+    }
+    else{
+        res.status(409).send('This is not the last version')
+    }
+})
+
 //#endregion
 
 const port = process.env.PORT || 3000;
