@@ -4,8 +4,6 @@ const app = express();
 const redis = require("redis");
 const basicAuth = require("express-basic-auth");
 const { promisify } = require("util");
-const { Console } = require("console");
-const { response } = require("express");
 
 //instancias
 app.use(express.json());
@@ -239,260 +237,382 @@ app.get("/resume", async (req, res) => {
 
 app.get("/resume/:name", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`);
-  if (!cache) {
-    const save = await set_async(
-      `Version ${version}`,
-      3600,
-      JSON.stringify(item)
-    );
-    console.log("Saving data...");
-    res.status(200).send(item);
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response);
+    }
   } else {
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response);
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/profiles", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.basics.profiles))
-  console.log("Saving data...");
-  res.status(200).send(item.basics.profiles);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.basics.profiles);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.basics.profiles)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.basics.profiles);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.basics.profiles);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/work", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work))
-  console.log("Saving data...");
-  res.status(200).send(item.work);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.work);
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.work)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.work);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.work);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/work/highlights", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.work.highlights))
-  console.log("Saving data...");
-  res.status(200).send(item.work.highlights);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.work.highlights);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.work.highlights)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.work.highlights);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.work.highlights);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/volunteer", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer))
-  console.log("Saving data...");
-  res.status(200).send(item.volunteer);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.volunteer);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.volunteer)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.volunteer);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.volunteer);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/volunteer/highlights", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.volunteer.highlights))
-  console.log("Saving data...");
-  res.status(200).send(item.volunteer.highlights);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.volunteer.highlights);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.volunteer.highlights)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.volunteer.highlights);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.volunteer.highlights);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/education", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education))
-  console.log("Saving data...");
-  res.status(200).send(item.education);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.education);
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.education)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.education);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.education);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/education/courses", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.education.courses))
-  console.log("Saving data...");
-  res.status(200).send(item.education.courses);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.education.courses);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.education.courses)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.education.courses);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.education.courses);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/awards", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.awards))
-  console.log("Saving data...");
-  res.status(200).send(item.awards);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.awards);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.awards)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.awards);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.awards);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/publications", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.publications))
-  console.log("Saving data...");
-  res.status(200).send(item.publications);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.publications);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.publications)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.publications);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.publications);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/skills", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills))
-  console.log("Saving data...");
-  res.status(200).send(item.skills);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.skills);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.skills)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.skills);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.skills);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/skills/keywords", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.skills.keywords))
-  console.log("Saving data...");
-  res.status(200).send(item.skills.keywords);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.skills.keywords);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.skills.keywords)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.skills.keywords);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.skills.keywords);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/languages", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.languages))
-  console.log("Saving data...");
-  res.status(200).send(item.languages);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.languages);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.languages)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.languages);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.languages);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/interests", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests))
-  console.log("Saving data...");
-  res.status(200).send(item.interests);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.interests);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.interests)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.interests);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.interests);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/interests/keywords", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.interests.keywords))
-  console.log("Saving data...");
-  res.status(200).send(item.interests.keywords);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.interests.keywords);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.interests.keywords)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.interests.keywords);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.interests.keywords);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
 app.get("/resume/:name/references", async (req, res) => {
   const item = resumes.find((c) => c.basics.name === req.params.name);
-  res.set("etag", `${version}`);
-  const cache = await get_async(`Version ${version}`)
-  if(!cache){
-  const save = await set_async(`Version ${version}`, 3600, JSON.stringify(item.references))
-  console.log("Saving data...");
-  res.status(200).send(item.references);
-  }
-  else{
-    const reply = JSON.parse(cache)
-    const response = reply.find((c => c.basics.name === req.params.name))
-    res.status(200).send(response.references);
+
+  if (item) {
+    res.set("etag", `${version}`);
+    const cache = await get_async(`Version ${version}`);
+    if (!cache) {
+      const save = await set_async(
+        `Version ${version}`,
+        3600,
+        JSON.stringify(item.references)
+      );
+      console.log("Saving data...");
+      res.status(200).send(item.references);
+    } else {
+      const reply = JSON.parse(cache);
+      const response = reply.find((c) => c.basics.name === req.params.name);
+      res.status(200).send(response.references);
+    }
+  } else {
+    res.status(404).send("Tis item does not exist...");
   }
 });
 
@@ -846,7 +966,7 @@ app.delete(
     if (res.get("etag") === `${req.params.version}`) {
       if (item) {
         resumes.splice(index, 1);
-        //await del_async(`Version ${version}`)
+        await del_async(`Version ${version}`);
         res.status(200).send("Success!");
       } else {
         res.status(404).send("This item could not been found");
