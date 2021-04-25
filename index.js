@@ -460,6 +460,19 @@ app.get(("/resume/:name/references"), async (req, res) => {
 //#endregion
 
 //#region POST
+
+app.post(("/resume/:version"), (req, res) => {
+    res.set('etag', `${version}`)
+    if(res.get('etag') === `${req.params.version}`){
+        resumes.push(req.body)
+        version++
+        res.status(200).send('Success!')
+    }
+    else{
+        res.status(409).send('This is not the last version')
+    }
+})
+
 //#endregion
 
 //#region PUT
