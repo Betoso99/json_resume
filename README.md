@@ -23,13 +23,12 @@ Using the plugin of Rest Client in Visual Studio Code
  * `sudo service redis-server start` to run a redis server that will make a cache
 
 ### Schema
-This app was developed based on this [schema][1]
+This app was developed based on this [schema]: https://jsonresume.org/schema/
 
 #### Pre-requisites
- *  "express": "^4.17.1",
- *  "express-basic-auth": "^1.2.0",
- *  "node-fetch": "^2.6.1",
- *  "redis": "^3.1.2"
+ *  `'express": "^4.17.1"`
+ *  `"express-basic-auth": "^1.2.0"`
+ *  `"node-fetch": "^2.6.1"`
+ *  `"redis": "^3.1.2"`
 
 Alberto Osorio - 1085998
-[1]: https://jsonresume.org/schema/
