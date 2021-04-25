@@ -476,6 +476,27 @@ app.post(("/resume/:version"), (req, res) => {
 //#endregion
 
 //#region PUT
+
+app.put(("/resume/:name/:version"), (req, res) => {
+    const item = resumes.find(c => c.basics.name === req.params.name)
+    const index = resumes.indexOf(item)
+
+    res.set('etag', `${version}`)
+    if(res.get('etag') === `${req.params.version}`){
+        if(item){
+            resumes[index] = req.body
+            version++
+            res.status(200).send('Success!')
+        }
+        else{
+            res.status(404).send('This item could not been found')
+        }
+    }
+    else{
+        res.status(409).send('This is not the last version')
+    }
+})
+
 //#endregion
 
 //#region PATCH
